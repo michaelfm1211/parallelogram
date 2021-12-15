@@ -24,16 +24,6 @@ class Point {
     if (Math.abs(slope) === Infinity) return NaN;
     else return slope;
   }
-
-  /**
-   * Returns distance between two points
-   * @param      {Point}  p1      The first point
-   * @param      {Point}  p2      The second point
-   * @return     {number}
-   */
-  static dist(p1, p2) {
-    return Math.sqrt((p2.x-p1.x)^2 + (p2.y-p1.y)^2);
-  }
 }
 
 /**
