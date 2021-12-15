@@ -1,0 +1,39 @@
+{
+  "name": "parallelogram",
+  "version": "1.0.0",
+  "description": "calculator to find fourth point of a parallelogram",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "browserify index.js -o public/dist/bundle.js",
+    "watch": "watchify index.js -o public/dist/bundle.js -v",
+    "serve": "serve public/"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "@babel/preset-env"
+          ]
+        }
+      ]
+    ]
+  },
+  "author": "Michael M",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.6.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "babelify": "^10.0.0",
+    "browserify": "^17.0.0",
+    "eslint": "^8.4.1",
+    "eslint-config-google": "^0.14.0",
+    "serve": "^13.0.2",
+    "watchify": "^4.0.0"
+  }
+}
