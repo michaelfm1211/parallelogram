@@ -15,6 +15,20 @@ function showError(error) {
 }
 
 /**
+ * Returns the string representation of a number rounded to a maximum of 15
+ * decimal places
+ *
+ * @param      {Number} num     The number to show.
+ */
+function round(num) {
+  const str = num.toPrecision(15).replace(/(^\d*\..*?)0*$/g, '$1'); 
+  return str.endsWith('.') ? str.slice(0, -1) : str;
+}
+console.log(round(150))
+console.log(round(42.0))
+console.log(round(69.00420))
+
+/**
  * Finds a fourth point of parallelogram ABCD, given the inputs as ABC,
  * respectively and the output as D.
  * @param      {Point}  p1      The first point (adjacent to ouput)
@@ -59,13 +73,10 @@ $('#points').on('submit', (e) => {
   const p3 = new Point(parseFloat($('#p3x').val()),
       parseFloat($('#p3y').val()));
 
-  if (!p1.x || !p1.y || !p2.x || !p2.y || !p3.x || !p3.y) {
-    return showError('One or more input fields are empty.');
+  if ([p1.x, p1.y, p2.x, p2.y, p3.x, p3.y].some(Number.isNaN)) {
+    return showError('One or more input fields are invalid.');
   }
 
-  // const res1 = findPoint(p1, p3, p2);
-  // const res2 = findPoint(p2, p1, p3);
-  // const res3 = findPoint(p3, p2, p1);
   let res1;
   let res2;
   let res3;
@@ -80,9 +91,9 @@ $('#points').on('submit', (e) => {
   }
 
   $('#results').show();
-  $('#result1').text(`(${res1.x}, ${res1.y})`);
-  $('#result2').text(`(${res2.x}, ${res2.y})`);
-  $('#result3').text(`(${res3.x}, ${res3.y})`);
+  $('#result1').text(`(${round(res1.x)}, ${round(res1.y)})`);
+  $('#result2').text(`(${round(res2.x)}, ${round(res2.y)})`);
+  $('#result3').text(`(${round(res3.x)}, ${round(res3.y)})`);
 
   console.log(res1, res2, res3);
 });
